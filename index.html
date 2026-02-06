@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gourmet Haven | Modern Restaurant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main Style File -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome for Icons (Optional, using CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">Gourmet<span>Haven</span>.</a>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item">
+            <a href="#gallery" class="nav-link">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content fade-in-up">
+        <h1>Experience the Taste of Luxury</h1>
+        <p>
+          Fresh ingredients, authentic recipes, and an atmosphere you'll never
+          forget.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Book a Table</a>
+          <a href="#menu" class="btn btn-secondary">View Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Our Delicious Menu</h2>
+                <p>Hand-picked for you by our master chefs</p>
+            </div>
+
+            <!-- Menu Filters -->
+            <div class="menu-filters text-center">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="starters">Starters</button>
+                <button class="filter-btn" data-filter="mains">Mains</button>
+                <button class="filter-btn" data-filter="desserts">Desserts</button>
+                <button class="filter-btn" data-filter="drinks">Drinks</button>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Starters -->
+                <div class="menu-card scroll-reveal" data-category="starters">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Salad">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Fresh Garden Salad</h3>
+                        <p class="description">Crisp greens, cherry tomatoes, and balsamic vinaigrette.</p>
+                        <span class="price">$12.99</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="1">View Details</button>
+                            <button class="btn-add" data-id="1" data-title="Fresh Garden Salad" data-price="12.99">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card scroll-reveal" data-category="starters">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Bruschetta">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Tomato Bruschetta</h3>
+                        <p class="description">Grilled bread rubbed with garlic and topped with olive oil and salt.</p>
+                        <span class="price">$9.50</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="2">View Details</button>
+                            <button class="btn-add" data-id="2" data-title="Tomato Bruschetta" data-price="9.50">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mains -->
+                <div class="menu-card scroll-reveal" data-category="mains">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Burger">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Gourmet Beef Burger</h3>
+                        <p class="description">Angus beef, cheddar cheese, caramelized onions, and fries.</p>
+                        <span class="price">$18.50</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="3">View Details</button>
+                            <button class="btn-add" data-id="3" data-title="Gourmet Beef Burger" data-price="18.50">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card scroll-reveal" data-category="mains">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Pizza">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Italian Pizza</h3>
+                        <p class="description">Tomato sauce, mozzarella, fresh basil, and extra virgin olive oil.</p>
+                        <span class="price">$22.00</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="4">View Details</button>
+                            <button class="btn-add" data-id="4" data-title="Italian Pizza" data-price="22.00">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card scroll-reveal" data-category="mains">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Steak">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Grilled Ribeye Steak</h3>
+                        <p class="description">Served with roasted vegetables and mashed potatoes.</p>
+                        <span class="price">$35.00</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="5">View Details</button>
+                            <button class="btn-add" data-id="5" data-title="Grilled Ribeye Steak" data-price="35.00">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-card scroll-reveal" data-category="desserts">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Cheesecake">
+                    </div>
+                    <div class="menu-info">
+                        <h3>New York Cheesecake</h3>
+                        <p class="description">Creamy cheesecake with a graham cracker crust and berry sauce.</p>
+                        <span class="price">$8.99</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="6">View Details</button>
+                            <button class="btn-add" data-id="6" data-title="New York Cheesecake" data-price="8.99">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card scroll-reveal" data-category="desserts">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Brownie">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Chocolate Brownie</h3>
+                        <p class="description">Warm chocolate brownie served with vanilla ice cream.</p>
+                        <span class="price">$7.50</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="7">View Details</button>
+                            <button class="btn-add" data-id="7" data-title="Chocolate Brownie" data-price="7.50">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="menu-card scroll-reveal" data-category="drinks">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Drink">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Signature Cocktails</h3>
+                        <p class="description">Handcrafted cocktails mixed with premium spirits.</p>
+                        <span class="price">$15.00</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="8">View Details</button>
+                            <button class="btn-add" data-id="8" data-title="Signature Cocktails" data-price="15.00">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card scroll-reveal" data-category="drinks">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Lemonade">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Fresh Lemonade</h3>
+                        <p class="description">Freshly squeezed lemons with mint and ice.</p>
+                        <span class="price">$5.00</span>
+                        <div class="menu-buttons">
+                            <button class="btn-details" data-id="9">View Details</button>
+                            <button class="btn-add" data-id="9" data-title="Fresh Lemonade" data-price="5.00">Add to Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-light">
+      <div class="container">
+        <div class="about-wrapper">
+          <div class="about-image scroll-reveal">
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+              alt="Restaurant Interior"
+            />
+          </div>
+          <div class="about-text scroll-reveal">
+            <h2>Our Story</h2>
+            <h3>Tradition & Passion</h3>
+            <p>
+              Founded in 2010, Gourmet Haven has been serving the finest dishes
+              inspired by traditional recipes with a modern twist. We believe in
+              sustainable sourcing and the magic of fresh ingredients.
+            </p>
+            <p>
+              Our chef, with over 20 years of experience, curates every plate to
+              ensure a memorable dining experience for you and your loved ones.
+            </p>
+            <a href="#menu" class="btn btn-primary">Explore Menu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2>Photo Gallery</h2>
+          <p>A glimpse into our atmosphere</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 1"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 2"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 3"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 4"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 5"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Delicious Burger"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 7"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 8"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 9"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 10"></div>
+          <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 11"></div>
+                <div class="gallery-item scroll-reveal"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gallery 12"></div>
+            </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-dark text-white">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2>Contact Us</h2>
+          <p>We'd love to hear from you</p>
+        </div>
+        <div class="contact-wrapper">
+          <div class="contact-info scroll-reveal">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <h4>Location</h4>
+              <p>123 Culinary Ave, Foodie City, FC 90210</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <h4>Phone</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <h4>Email</h4>
+              <p>info@gourmethaven.com</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <h4>Opening Hours</h4>
+              <p>Mon-Sun: 11:00 AM - 11:00 PM</p>
+            </div>
+          </div>
+          <div class="contact-form scroll-reveal">
+            <form id="reservationForm">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required />
+                <small class="error-msg">Name is required</small>
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
+                <small class="error-msg">Please enter a valid email</small>
+              </div>
+              <div class="form-group">
+                <textarea
+                  id="message"
+                  rows="5"
+                  placeholder="Your Message or Reservation Request"
+                  required
+                ></textarea>
+                <small class="error-msg">Message cannot be empty</small>
+              </div>
+              <button type="submit" class="btn btn-primary full-width">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h2>Gourmet<span>Haven</span>.</h2>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <p class="copyright">
+            &copy; 2024 Gourmet Haven. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart Floating Button -->
+    <div class="cart-btn" id="cartBtn">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Item Details Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="" alt="" id="modalImg">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <span class="modal-price" id="modalPrice"></span>
+                    <p id="modalDesc"></p>
+                    <div class="modal-extras">
+                        <h4>Ingredients:</h4>
+                        <p id="modalIngredients"></p>
+                        <h4>Nutritional Info:</h4>
+                        <p id="modalNutrition"></p>
+                    </div>
+                    <button class="btn btn-primary" id="modalAddBtn">Add to Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Script File -->
+    <script src="script.js"></script>
+  </body>
+</html>
