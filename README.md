@@ -42,7 +42,8 @@ Tera/
 ├── script.js       # JavaScript for interactivity
 └── README.md       # Project documentation
 ```
-
+ 
 ## 📄 License
 
 This project is open source and available for personal and commercial use.
+https://shuaibalhajj.github.io/Simple-Restaurant-website-/
