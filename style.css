@@ -39,6 +39,12 @@ a {
     transition: var(--transition);
 }
 
+a:focus-visible,
+[role="button"]:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 ul {
     list-style: none;
 }
@@ -51,6 +57,18 @@ img {
 /* =========================================
    2. Utility Classes
    ========================================= */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .container {
     max-width: 1140px;
     margin: 0 auto;

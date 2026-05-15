@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Keyboard support for mobile menu
+    mobileMenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            mobileMenu.click();
+        }
+    });
+
     /* =========================================
        2. Sticky Navbar on Scroll
        ========================================= */
@@ -178,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalIngredients = document.getElementById('modalIngredients');
     const modalNutrition = document.getElementById('modalNutrition');
     const modalAddBtn = document.getElementById('modalAddBtn');
+    let lastFocusedElement;
 
     // Open Modal
     document.querySelectorAll('.btn-details').forEach(btn => {
@@ -186,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = menuData[id];
             
             if (data) {
+                lastFocusedElement = document.activeElement;
                 modalImg.src = data.img;
                 modalTitle.innerText = data.title;
                 modalPrice.innerText = data.price;
@@ -200,20 +210,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden'; // Disable scrolling
+                closeModal.focus();
             }
         });
     });
 
     // Close Modal
-    closeModal.addEventListener('click', () => {
+    function closeItemModal() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto'; // Enable scrolling
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    closeModal.addEventListener('click', closeItemModal);
+
+    // Keyboard support for close modal button
+    closeModal.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            closeModal.click();
+        }
     });
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            closeItemModal();
         }
     });
 
@@ -223,6 +246,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let cartCount = 0;
     const cartCountEl = document.querySelector('.cart-count');
     const cartBtn = document.getElementById('cartBtn');
+
+    // Keyboard support for cart button
+    cartBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            cartBtn.click();
+        }
+    });
 
     function addToCart(title, price) {
         cartCount++;
@@ -246,8 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // If added from modal, close modal
             if (e.target.id === 'modalAddBtn') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                closeItemModal();
             }
         }
     });
