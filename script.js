@@ -178,10 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalIngredients = document.getElementById('modalIngredients');
     const modalNutrition = document.getElementById('modalNutrition');
     const modalAddBtn = document.getElementById('modalAddBtn');
+    let lastFocusedElement;
 
     // Open Modal
     document.querySelectorAll('.btn-details').forEach(btn => {
         btn.addEventListener('click', () => {
+            lastFocusedElement = document.activeElement;
             const id = btn.getAttribute('data-id');
             const data = menuData[id];
             
@@ -199,21 +201,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
 
                 modal.style.display = 'block';
+                closeModal.focus();
                 document.body.style.overflow = 'hidden'; // Disable scrolling
             }
         });
     });
 
     // Close Modal
-    closeModal.addEventListener('click', () => {
+    function hideModal() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto'; // Enable scrolling
-    });
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    closeModal.addEventListener('click', hideModal);
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            hideModal();
+        }
+    });
+
+    // Escape key to close modal
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            hideModal();
         }
     });
 
@@ -246,8 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // If added from modal, close modal
             if (e.target.id === 'modalAddBtn') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                hideModal();
             }
         }
     });
