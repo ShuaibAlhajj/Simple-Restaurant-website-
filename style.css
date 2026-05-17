@@ -748,6 +748,16 @@ footer {
     color: #aaa;
 }
 
+/* Toast Notifications */
+.toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 3000; }
+.toast {
+    background: var(--secondary-color); color: var(--white); padding: 12px 25px;
+    border-radius: 5px; margin-top: 10px; box-shadow: var(--shadow);
+    animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+}
+@keyframes toastIn { from { transform: translateX(-20px); opacity: 0; } }
+@keyframes toastOut { to { opacity: 0; } }
+
 /* =========================================
    10. Scroll Effects Classes
    ========================================= */
