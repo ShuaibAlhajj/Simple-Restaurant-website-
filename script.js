@@ -70,9 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             // Add active class to clicked button
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
 
             const filterValue = btn.getAttribute('data-filter');
 
@@ -248,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartBtn.classList.remove('bump');
         }, 300);
 
-        alert(`Added to Order: ${title} - $${price}`);
+        showToast(`Added to Order: ${title} - $${price}`);
     }
 
     // Add to Cart Buttons (Card & Modal)
@@ -310,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.innerText = 'Sending...';
                 
                 setTimeout(() => {
-                    alert('Thank you! Your message has been sent successfully.');
+                    showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
                     btn.innerText = originalText;
                     // Reset success styles
@@ -338,6 +342,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function isValidEmail(email) {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
+    }
+
+    // Toast Notification System
+    function showToast(message) {
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
     }
 
 });
