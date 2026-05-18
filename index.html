@@ -24,12 +24,12 @@
     <nav class="navbar">
       <div class="container">
         <a href="#" class="logo">Gourmet<span>Haven</span>.</a>
-        <div class="menu-toggle" id="mobile-menu">
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
-        </div>
-        <ul class="nav-menu">
+        </button>
+        <ul class="nav-menu" id="nav-menu">
           <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
           <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
@@ -86,8 +86,8 @@
                         <p class="description">Crisp greens, cherry tomatoes, and balsamic vinaigrette.</p>
                         <span class="price">$12.99</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="1">View Details</button>
-                            <button class="btn-add" data-id="1" data-title="Fresh Garden Salad" data-price="12.99">Add to Order</button>
+                            <button class="btn-details" data-id="1" aria-label="View details for Fresh Garden Salad">View Details</button>
+                            <button class="btn-add" data-id="1" data-title="Fresh Garden Salad" data-price="12.99" aria-label="Add Fresh Garden Salad to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -100,8 +100,8 @@
                         <p class="description">Grilled bread rubbed with garlic and topped with olive oil and salt.</p>
                         <span class="price">$9.50</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="2">View Details</button>
-                            <button class="btn-add" data-id="2" data-title="Tomato Bruschetta" data-price="9.50">Add to Order</button>
+                            <button class="btn-details" data-id="2" aria-label="View details for Tomato Bruschetta">View Details</button>
+                            <button class="btn-add" data-id="2" data-title="Tomato Bruschetta" data-price="9.50" aria-label="Add Tomato Bruschetta to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -116,8 +116,8 @@
                         <p class="description">Angus beef, cheddar cheese, caramelized onions, and fries.</p>
                         <span class="price">$18.50</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="3">View Details</button>
-                            <button class="btn-add" data-id="3" data-title="Gourmet Beef Burger" data-price="18.50">Add to Order</button>
+                            <button class="btn-details" data-id="3" aria-label="View details for Gourmet Beef Burger">View Details</button>
+                            <button class="btn-add" data-id="3" data-title="Gourmet Beef Burger" data-price="18.50" aria-label="Add Gourmet Beef Burger to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
                         <p class="description">Tomato sauce, mozzarella, fresh basil, and extra virgin olive oil.</p>
                         <span class="price">$22.00</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="4">View Details</button>
-                            <button class="btn-add" data-id="4" data-title="Italian Pizza" data-price="22.00">Add to Order</button>
+                            <button class="btn-details" data-id="4" aria-label="View details for Italian Pizza">View Details</button>
+                            <button class="btn-add" data-id="4" data-title="Italian Pizza" data-price="22.00" aria-label="Add Italian Pizza to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -144,8 +144,8 @@
                         <p class="description">Served with roasted vegetables and mashed potatoes.</p>
                         <span class="price">$35.00</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="5">View Details</button>
-                            <button class="btn-add" data-id="5" data-title="Grilled Ribeye Steak" data-price="35.00">Add to Order</button>
+                            <button class="btn-details" data-id="5" aria-label="View details for Grilled Ribeye Steak">View Details</button>
+                            <button class="btn-add" data-id="5" data-title="Grilled Ribeye Steak" data-price="35.00" aria-label="Add Grilled Ribeye Steak to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -160,8 +160,8 @@
                         <p class="description">Creamy cheesecake with a graham cracker crust and berry sauce.</p>
                         <span class="price">$8.99</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="6">View Details</button>
-                            <button class="btn-add" data-id="6" data-title="New York Cheesecake" data-price="8.99">Add to Order</button>
+                            <button class="btn-details" data-id="6" aria-label="View details for New York Cheesecake">View Details</button>
+                            <button class="btn-add" data-id="6" data-title="New York Cheesecake" data-price="8.99" aria-label="Add New York Cheesecake to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -174,8 +174,8 @@
                         <p class="description">Warm chocolate brownie served with vanilla ice cream.</p>
                         <span class="price">$7.50</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="7">View Details</button>
-                            <button class="btn-add" data-id="7" data-title="Chocolate Brownie" data-price="7.50">Add to Order</button>
+                            <button class="btn-details" data-id="7" aria-label="View details for Chocolate Brownie">View Details</button>
+                            <button class="btn-add" data-id="7" data-title="Chocolate Brownie" data-price="7.50" aria-label="Add Chocolate Brownie to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -190,8 +190,8 @@
                         <p class="description">Handcrafted cocktails mixed with premium spirits.</p>
                         <span class="price">$15.00</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="8">View Details</button>
-                            <button class="btn-add" data-id="8" data-title="Signature Cocktails" data-price="15.00">Add to Order</button>
+                            <button class="btn-details" data-id="8" aria-label="View details for Signature Cocktails">View Details</button>
+                            <button class="btn-add" data-id="8" data-title="Signature Cocktails" data-price="15.00" aria-label="Add Signature Cocktails to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -204,8 +204,8 @@
                         <p class="description">Freshly squeezed lemons with mint and ice.</p>
                         <span class="price">$5.00</span>
                         <div class="menu-buttons">
-                            <button class="btn-details" data-id="9">View Details</button>
-                            <button class="btn-add" data-id="9" data-title="Fresh Lemonade" data-price="5.00">Add to Order</button>
+                            <button class="btn-details" data-id="9" aria-label="View details for Fresh Lemonade">View Details</button>
+                            <button class="btn-add" data-id="9" data-title="Fresh Lemonade" data-price="5.00" aria-label="Add Fresh Lemonade to Order">Add to Order</button>
                         </div>
                     </div>
                 </div>
@@ -349,10 +349,10 @@
     </footer>
 
     <!-- Cart Floating Button -->
-    <div class="cart-btn" id="cartBtn">
+    <button class="cart-btn" id="cartBtn" aria-label="View Order Cart">
         <i class="fas fa-shopping-basket"></i>
         <span class="cart-count">0</span>
-    </div>
+    </button>
 
     <!-- Item Details Modal -->
     <div id="itemModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

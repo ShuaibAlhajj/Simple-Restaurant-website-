@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle menu
     mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
+        const isActive = mobileMenu.classList.toggle('active');
         navMenu.classList.toggle('active');
+        mobileMenu.setAttribute('aria-expanded', isActive);
     });
 
     // Close menu when clicking a link
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
             navMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -354,6 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const toast = document.createElement('div');
         toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
         toast.textContent = message;
         container.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
