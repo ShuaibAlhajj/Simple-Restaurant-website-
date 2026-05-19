@@ -183,9 +183,30 @@ h1, h2, h3, h4 {
     font-size: 1rem;
     font-weight: 500;
     color: var(--heading-color);
+    position: relative;
+    padding: 5px 0;
 }
 
-.nav-link:hover {
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.active {
     color: var(--primary-color);
 }
 

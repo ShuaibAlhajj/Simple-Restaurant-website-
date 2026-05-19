@@ -24,6 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
+       3.1 Scrollspy (Highlight Active Nav Link)
+       ========================================= */
+    const sections = document.querySelectorAll('section[id]');
+
+    const scrollspyOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50% 0px"
+    };
+
+    const scrollspyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.removeAttribute('aria-current');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                        link.setAttribute('aria-current', 'page');
+                    }
+                });
+            }
+        });
+    }, scrollspyOptions);
+
+    sections.forEach(section => {
+        scrollspyObserver.observe(section);
+    });
+
+    /* =========================================
        2. Sticky Navbar on Scroll
        ========================================= */
     const navbar = document.querySelector('.navbar');
@@ -248,6 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cartCount++;
         cartCountEl.innerText = cartCount;
         
+        // Update ARIA label for better accessibility
+        cartBtn.setAttribute('aria-label', `View Order Cart - ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`);
+
         // Simple visual feedback
         cartBtn.classList.add('bump');
         setTimeout(() => {
