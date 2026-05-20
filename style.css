@@ -13,6 +13,8 @@
     --font-body: 'Poppins', sans-serif;
     --transition: all 0.3s ease;
     --shadow: 0 5px 15px rgba(0,0,0,0.1);
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
 }
 
 * {
@@ -464,11 +466,24 @@ h1, h2, h3, h4 {
 .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #555;
+    border: 2px solid #555;
     background-color: #2d3436;
     color: var(--white);
     border-radius: 5px;
     font-family: var(--font-body);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.form-group .required {
+    color: var(--error-color);
+    margin-left: 3px;
 }
 
 .form-group input:focus, 
@@ -478,7 +493,7 @@ h1, h2, h3, h4 {
 }
 
 .error-msg {
-    color: #e74c3c;
+    color: var(--error-color);
     font-size: 0.8rem;
     display: none;
     margin-top: 5px;
@@ -486,7 +501,12 @@ h1, h2, h3, h4 {
 
 .form-group.error input,
 .form-group.error textarea {
-    border-color: #e74c3c;
+    border-color: var(--error-color);
+}
+
+.form-group.success input,
+.form-group.success textarea {
+    border-color: var(--success-color);
 }
 
 .form-group.error .error-msg {
