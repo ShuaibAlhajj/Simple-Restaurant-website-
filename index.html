@@ -299,8 +299,8 @@
             <form id="reservationForm" novalidate>
               <div class="form-group">
                 <label for="name">Name <span class="required">*</span></label>
-                <input type="text" id="name" placeholder="Your Name" required />
-                <small class="error-msg">Name is required</small>
+                <input type="text" id="name" placeholder="Your Name" required autocomplete="name" aria-describedby="name-error" />
+                <small class="error-msg" id="name-error">Name is required</small>
               </div>
               <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
@@ -309,8 +309,10 @@
                   id="email"
                   placeholder="Your Email"
                   required
+                  autocomplete="email"
+                  aria-describedby="email-error"
                 />
-                <small class="error-msg">Please enter a valid email</small>
+                <small class="error-msg" id="email-error">Please enter a valid email</small>
               </div>
               <div class="form-group">
                 <label for="message">Message <span class="required">*</span></label>
@@ -319,8 +321,9 @@
                   rows="5"
                   placeholder="Your Message or Reservation Request"
                   required
+                  aria-describedby="message-error"
                 ></textarea>
-                <small class="error-msg">Message cannot be empty</small>
+                <small class="error-msg" id="message-error">Message cannot be empty</small>
               </div>
               <button type="submit" class="btn btn-primary full-width">
                 Send Message

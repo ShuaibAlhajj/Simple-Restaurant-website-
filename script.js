@@ -313,65 +313,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message');
 
     if (form) {
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.parentElement.classList.contains('error')) {
+                    if (input.id === 'email') {
+                        if (input.value.trim() !== '' && isValidEmail(input.value)) setSuccess(input);
+                    } else if (input.value.trim() !== '') setSuccess(input);
+                }
+            });
+        });
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent actual submission
-            
+            e.preventDefault();
             let isValid = true;
-
-            // Validate Name
-            if (nameInput.value.trim() === '') {
-                setError(nameInput);
-                isValid = false;
-            } else {
-                setSuccess(nameInput);
-            }
-
-            // Validate Email
-            if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
-                setError(emailInput);
-                isValid = false;
-            } else {
-                setSuccess(emailInput);
-            }
-
-            // Validate Message
-            if (messageInput.value.trim() === '') {
-                setError(messageInput);
-                isValid = false;
-            } else {
-                setSuccess(messageInput);
-            }
-
+            if (nameInput.value.trim() === '') { setError(nameInput); isValid = false; } else setSuccess(nameInput);
+            if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) { setError(emailInput); isValid = false; } else setSuccess(emailInput);
+            if (messageInput.value.trim() === '') { setError(messageInput); isValid = false; } else setSuccess(messageInput);
             if (isValid) {
-                // Simulate form submission
                 const btn = form.querySelector('button');
                 const originalText = btn.innerText;
                 btn.innerText = 'Sending...';
-                
+                btn.disabled = true;
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
                     btn.innerText = originalText;
-                    // Reset success styles
+                    btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
                         input.parentElement.classList.remove('success');
+                        input.setAttribute('aria-invalid', 'false');
                     });
                 }, 1500);
             }
         });
     }
 
-    // Helper functions for validation
     function setError(input) {
-        const formGroup = input.parentElement;
-        formGroup.classList.add('error');
-        formGroup.classList.remove('success');
+        input.parentElement.classList.add('error');
+        input.parentElement.classList.remove('success');
+        input.setAttribute('aria-invalid', 'true');
     }
 
     function setSuccess(input) {
-        const formGroup = input.parentElement;
-        formGroup.classList.remove('error');
-        formGroup.classList.add('success');
+        input.parentElement.classList.remove('error');
+        input.parentElement.classList.add('success');
+        input.setAttribute('aria-invalid', 'false');
     }
 
     function isValidEmail(email) {
