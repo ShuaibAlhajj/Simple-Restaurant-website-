@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Form Accessibility and Modal Focus Trapping]
+**Learning:** For complex forms, linking error messages via `aria-describedby` and managing `aria-invalid` programmatically is crucial for screen reader users. Real-time validation (clearing errors on `input`) improves the correction flow. In modals, manual focus trapping is necessary to prevent keyboard users from escaping into the background content.
+**Action:** Always link error messages to inputs using `aria-describedby`, toggle `aria-invalid` in real-time, and implement a robust `Tab` key focus trap for all dialogs.
