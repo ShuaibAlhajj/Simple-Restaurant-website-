@@ -235,12 +235,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
                 document.body.style.overflow = 'hidden'; // Disable scrolling
             }
         });
+    });
+
+    // Focus Trapping for Modal
+    modal.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+
+        const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+            }
+        } else { // Tab
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
+        }
     });
 
     // Close Modal
@@ -313,6 +335,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message');
 
     if (form) {
+        // Real-time validation
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.parentElement.classList.contains('error')) {
+                    if (input.id === 'email') {
+                        if (isValidEmail(input.value)) setSuccess(input);
+                    } else if (input.value.trim() !== '') {
+                        setSuccess(input);
+                    }
+                }
+            });
+        });
+
         form.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent actual submission
             
@@ -352,9 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
                     btn.innerText = originalText;
-                    // Reset success styles
+                    // Reset success/aria states
                     [nameInput, emailInput, messageInput].forEach(input => {
                         input.parentElement.classList.remove('success');
+                        input.setAttribute('aria-invalid', 'false');
                     });
                 }, 1500);
             }
@@ -366,12 +402,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const formGroup = input.parentElement;
         formGroup.classList.add('error');
         formGroup.classList.remove('success');
+        input.setAttribute('aria-invalid', 'true');
     }
 
     function setSuccess(input) {
         const formGroup = input.parentElement;
         formGroup.classList.remove('error');
         formGroup.classList.add('success');
+        input.setAttribute('aria-invalid', 'false');
     }
 
     function isValidEmail(email) {
