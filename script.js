@@ -347,14 +347,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = form.querySelector('button');
                 const originalText = btn.innerText;
                 btn.innerText = 'Sending...';
+                btn.disabled = true;
+                btn.setAttribute('aria-disabled', 'true');
                 
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
                     btn.innerText = originalText;
-                    // Reset success styles
+                    btn.disabled = false;
+                    btn.removeAttribute('aria-disabled');
+
+                    // Reset success styles and ARIA states
                     [nameInput, emailInput, messageInput].forEach(input => {
                         input.parentElement.classList.remove('success');
+                        input.removeAttribute('aria-invalid');
                     });
                 }, 1500);
             }
@@ -366,12 +372,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const formGroup = input.parentElement;
         formGroup.classList.add('error');
         formGroup.classList.remove('success');
+        input.setAttribute('aria-invalid', 'true');
     }
 
     function setSuccess(input) {
         const formGroup = input.parentElement;
         formGroup.classList.remove('error');
         formGroup.classList.add('success');
+        input.setAttribute('aria-invalid', 'false');
     }
 
     function isValidEmail(email) {
