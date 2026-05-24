@@ -53,6 +53,22 @@ img {
 /* =========================================
    2. Utility Classes
    ========================================= */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px 15px;
+    z-index: 2001;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: none;
+}
+
 .container {
     max-width: 1140px;
     margin: 0 auto;

@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Skip Links and Footer Social Accessibility]
+**Learning:** For keyboard-heavy users, a "Skip to Content" link is the first line of defense against navigation fatigue. Additionally, icon-only links in footers are "invisible" to screen readers without explicit ARIA labels, making them impossible to navigate purposefully.
+**Action:** Always include a visually-hidden-until-focused skip link at the top of the DOM and ensure all icon-only social links have descriptive `aria-label` attributes.
