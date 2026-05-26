@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Bypassing Navigation and Target Focus States]
+**Learning:** For keyboard users, a "Skip to Content" link is a critical micro-UX win. To avoid a jarring visual focus ring on the entire main content area after the skip link is clicked, use `outline: none` on the `#main-content:focus` state in CSS. This maintains the accessibility of the focus shift without the negative visual side effect.
+**Action:** Always pair `tabindex="-1"` targets with `outline: none` on focus when they are used as navigation skip targets.
