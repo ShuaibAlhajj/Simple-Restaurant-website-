@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
@@ -257,6 +258,27 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
             hideModal();
+        }
+    });
+
+    // Focus Trap
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            const focusableElements = [closeModal, modalAddBtn];
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
         }
     });
 
