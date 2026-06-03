@@ -260,11 +260,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle focus trap
+    modal.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab' || modal.style.display !== 'block') return;
+        const els = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = els[0], last = els[els.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            last.focus(); e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            first.focus(); e.preventDefault();
+        }
+    });
+
     // Escape key to close modal
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            hideModal();
-        }
+        if (e.key === 'Escape' && modal.style.display === 'block') hideModal();
     });
 
     /* =========================================

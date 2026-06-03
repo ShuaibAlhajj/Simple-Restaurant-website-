@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-06-03 - [Robust Modal Keyboard Navigation]
+**Learning:** Attaching the Escape key listener to the `window` object is more reliable than the modal element itself, ensuring it works even if focus is momentarily lost. Focus traps must also use comprehensive selectors (beyond just buttons) to include links and inputs, preventing navigation "dead zones" within a dialog.
+**Action:** Use global listeners for Escape key actions and broad selectors for focus traps to ensure full keyboard accessibility.
