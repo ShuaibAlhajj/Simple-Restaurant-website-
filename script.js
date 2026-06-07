@@ -311,8 +311,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
+        if (messageInput && messageCounter) {
+            messageInput.addEventListener('input', () => {
+                messageCounter.textContent = `${messageInput.value.length} / 500`;
+            });
+        }
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
@@ -333,11 +339,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const originalText = btn.innerText;
                 btn.innerText = 'Sending...';
                 btn.disabled = true;
+                btn.setAttribute('aria-disabled', 'true');
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    if (messageCounter) messageCounter.textContent = '0 / 500';
                     btn.innerText = originalText;
                     btn.disabled = false;
+                    btn.setAttribute('aria-disabled', 'false');
                     [nameInput, emailInput, messageInput].forEach(input => {
                         input.parentElement.classList.remove('success');
                         input.setAttribute('aria-invalid', 'false');
