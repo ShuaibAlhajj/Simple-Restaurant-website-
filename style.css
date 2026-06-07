@@ -909,3 +909,11 @@ footer {
     outline: none;
     box-shadow: var(--shadow);
 }
+
+/* Character Counter */
+.char-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+}
