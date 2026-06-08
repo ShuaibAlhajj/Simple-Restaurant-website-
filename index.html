@@ -323,8 +323,10 @@
                     rows="5"
                     placeholder="Your Message or Reservation Request"
                     required
-                    aria-describedby="message-error"
+                    maxlength="500"
+                    aria-describedby="message-error message-counter"
                   ></textarea>
+                  <div id="message-counter" class="character-counter" role="status" aria-live="polite">0 / 500</div>
                   <small class="error-msg" id="message-error">Message cannot be empty</small>
                 </div>
                 <button type="submit" class="btn btn-primary full-width">
