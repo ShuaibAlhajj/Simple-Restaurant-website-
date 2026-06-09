@@ -486,6 +486,13 @@ h1, h2, h3, h4 {
     margin-left: 3px;
 }
 
+.char-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+}
+
 .form-group input:focus, 
 .form-group textarea:focus {
     outline: none;
