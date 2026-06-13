@@ -909,3 +909,15 @@ footer {
     outline: none;
     box-shadow: var(--shadow);
 }
+
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.char-counter {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+}
