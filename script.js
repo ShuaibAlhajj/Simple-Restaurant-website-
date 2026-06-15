@@ -311,10 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
+                if (input.id === 'message' && messageCounter) {
+                    const count = input.value.length;
+                    messageCounter.innerText = `${count} / 500`;
+                }
+
                 if (input.parentElement.classList.contains('error')) {
                     if (input.id === 'email') {
                         if (input.value.trim() !== '' && isValidEmail(input.value)) setSuccess(input);
@@ -336,6 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    if (messageCounter) messageCounter.innerText = '0 / 500';
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
