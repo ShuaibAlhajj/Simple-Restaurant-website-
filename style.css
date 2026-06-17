@@ -513,6 +513,18 @@ h1, h2, h3, h4 {
     display: block;
 }
 
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.char-counter {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
 .full-width {
     width: 100%;
     border: none;
