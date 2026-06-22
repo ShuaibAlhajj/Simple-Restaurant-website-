@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (data) {
                 modalImg.src = data.img;
+                modalImg.alt = data.title;
                 modalTitle.innerText = data.title;
                 modalPrice.innerText = data.price;
                 modalDesc.innerText = data.desc;
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
@@ -311,8 +313,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
+        // Character counter for message
+        if (messageInput && messageCounter) {
+            messageInput.addEventListener('input', () => {
+                const count = messageInput.value.length;
+                messageCounter.textContent = `${count} / 500`;
+            });
+        }
+
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
@@ -336,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    if (messageCounter) messageCounter.textContent = '0 / 500';
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
