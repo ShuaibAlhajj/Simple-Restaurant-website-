@@ -518,6 +518,18 @@ h1, h2, h3, h4 {
     border: none;
 }
 
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.char-counter {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: auto;
+}
+
 /* Menu Buttons */
 .menu-buttons {
     display: flex;

@@ -311,8 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
+        if (messageInput && messageCounter) {
+            // Initialize counter on load
+            messageCounter.textContent = `${messageInput.value.length} / 500`;
+            messageInput.addEventListener('input', () => {
+                messageCounter.textContent = `${messageInput.value.length} / 500`;
+            });
+        }
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
@@ -342,6 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         input.parentElement.classList.remove('success');
                         input.setAttribute('aria-invalid', 'false');
                     });
+                    if (messageCounter) {
+                        messageCounter.textContent = '0 / 500';
+                    }
                 }, 1500);
             }
         });
