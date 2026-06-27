@@ -496,7 +496,19 @@ h1, h2, h3, h4 {
     color: var(--error-color);
     font-size: 0.8rem;
     display: none;
+}
+
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 5px;
+}
+
+.char-counter {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: auto;
 }
 
 .form-group.error input,
@@ -540,6 +552,11 @@ h1, h2, h3, h4 {
     background-color: transparent;
     border: 1px solid var(--primary-color);
     color: var(--heading-color);
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed !important;
 }
 
 .btn-details:hover {
