@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-06-28 - [Accessible Character Counters and Icon-Only Links]
+**Learning:** For character counters on dark-themed forms, ensure high visual contrast (e.g., `rgba(255, 255, 255, 0.7)`) and link the counter via `aria-describedby` to its input. For icon-only links, `aria-label` is mandatory for screen readers, and `title` attributes provide helpful desktop tooltips. Always set `aria-hidden="true"` on decorative icons inside these links to avoid redundant announcements.
+**Action:** Always link live counters to inputs using `aria-describedby` and ensure icon-only buttons/links have descriptive aria-labels and hidden internal icons.
