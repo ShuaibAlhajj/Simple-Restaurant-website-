@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2026-06-29 - [Character Counters and Accessibility]
+**Learning:** Setting aria-hidden='true' on visual counter elements prevents them from being read redundantly in the document flow, while linking them to their inputs via 'aria-describedby' ensures screen reader users still receive the count/limit information as part of the input's context.
+**Action:** Use 'aria-describedby' to link character counters to inputs and hide the visual element with 'aria-hidden' to avoid redundancy.
