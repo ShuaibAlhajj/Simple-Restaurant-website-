@@ -513,6 +513,27 @@ h1, h2, h3, h4 {
     display: block;
 }
 
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 5px;
+}
+
+.char-counter {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: auto;
+}
+
+.btn:disabled {
+    opacity: 0.7 !important;
+    cursor: not-allowed !important;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
 .full-width {
     width: 100%;
     border: none;
