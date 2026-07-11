@@ -311,8 +311,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
+        // Initialize character counter
+        if (messageInput && messageCounter) {
+            const limit = messageInput.getAttribute('maxlength') || 500;
+            messageCounter.textContent = `${messageInput.value.length} / ${limit}`;
+
+            messageInput.addEventListener('input', () => {
+                messageCounter.textContent = `${messageInput.value.length} / ${limit}`;
+            });
+        }
+
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
@@ -336,6 +347,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+
+                    // Reset character counter
+                    if (messageCounter) {
+                        const limit = messageInput.getAttribute('maxlength') || 500;
+                        messageCounter.textContent = `0 / ${limit}`;
+                    }
+
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
