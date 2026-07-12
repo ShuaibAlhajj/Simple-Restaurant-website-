@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Constraint-Driven Layout for Micro-UX]
+**Learning:** When working under strict "no custom CSS" constraints in a codebase without utility classes, inline styles can be used for essential micro-UX positioning (like right-aligning a character counter). This avoids polluting the global stylesheet while achieving the necessary layout for a polished interaction.
+**Action:** Use targeted inline styles for layout-essential micro-UX elements when CSS modification is restricted and utility classes are unavailable.
