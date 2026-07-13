@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Live Character Counters and Form Resets]
+**Learning:** For textareas with limits, a live character counter improves UX by preventing "overflow surprise". Using `aria-describedby` to link the counter to the input and `aria-live="polite"` for the counter itself ensures accessibility. Crucially, when a form is reset via JS (e.g., after successful submission), the counter's visual state must be manually re-synchronized.
+**Action:** Always include a manual call to the counter update logic within form success/reset handlers.
