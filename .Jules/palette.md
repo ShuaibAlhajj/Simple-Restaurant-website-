@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Form Accessibility: Character Counters]
+**Learning:** Real-time feedback for character limits significantly improves form UX. Combining the native `maxlength` attribute for browser enforcement with a JavaScript-driven visual counter linked via `aria-describedby` provides clarity for both sighted and screen reader users. Including `role="status"` or `aria-live="polite"` on the counter can provide immediate feedback, but linking it as a description is a robust baseline.
+**Action:** Always pair `maxlength` with a visual character counter and ensure they are programmatically linked for accessibility.

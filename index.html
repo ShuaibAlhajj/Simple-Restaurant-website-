@@ -323,9 +323,13 @@
                     rows="5"
                     placeholder="Your Message or Reservation Request"
                     required
-                    aria-describedby="message-error"
+                    maxlength="500"
+                    aria-describedby="message-error message-counter"
                   ></textarea>
-                  <small class="error-msg" id="message-error">Message cannot be empty</small>
+                  <div class="char-counter-wrapper">
+                    <small class="error-msg" id="message-error">Message cannot be empty</small>
+                    <small id="message-counter" class="char-counter">0 / 500</small>
+                  </div>
                 </div>
                 <button type="submit" class="btn btn-primary full-width">
                   Send Message
@@ -345,10 +349,10 @@
             <h2>Gourmet<span>Haven</span>.</h2>
           </div>
           <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Follow us on Facebook" title="Follow us on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Follow us on Twitter" title="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Follow us on Instagram" title="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Follow us on LinkedIn" title="Follow us on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
           </div>
           <p class="copyright">
             &copy; 2024 Gourmet Haven. All Rights Reserved.
@@ -358,9 +362,9 @@
     </footer>
 
     <!-- Cart Floating Button -->
-    <button class="cart-btn" id="cartBtn" aria-label="View Order Cart">
-        <i class="fas fa-shopping-basket"></i>
-        <span class="cart-count">0</span>
+    <button class="cart-btn" id="cartBtn" aria-label="View Order Cart - 0 items">
+        <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+        <span class="cart-count" aria-hidden="true">0</span>
     </button>
 
     <!-- Item Details Modal -->
