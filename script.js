@@ -311,8 +311,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
 
     if (form) {
+        // Initialize character counter based on maxlength attribute
+        const initCharCounter = () => {
+            if (messageInput && messageCounter) {
+                const maxLength = messageInput.getAttribute('maxlength') || 500;
+                const currentLength = messageInput.value.length;
+                messageCounter.textContent = `${currentLength} / ${maxLength}`;
+            }
+        };
+
+        // Call initialization in case of browser autofill or navigation state retention
+        initCharCounter();
+
+        // Listen for input to update counter dynamically
+        if (messageInput && messageCounter) {
+            messageInput.addEventListener('input', () => {
+                const maxLength = messageInput.getAttribute('maxlength') || 500;
+                messageCounter.textContent = `${messageInput.value.length} / ${maxLength}`;
+            });
+        }
+
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
@@ -336,6 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    initCharCounter(); // Recalculate and reset character counter dynamically
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
