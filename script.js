@@ -305,22 +305,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       8. Contact Form Validation
+       8. Contact Form Validation & Character Counter
        ========================================= */
     const form = document.getElementById('reservationForm');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+
+    function updateCharCounter() {
+        if (messageInput && messageCounter) {
+            const limit = messageInput.getAttribute('maxlength') || 500;
+            messageCounter.textContent = `${messageInput.value.length} / ${limit}`;
+        }
+    }
 
     if (form) {
+        // Initialize the character counter value
+        updateCharCounter();
+
+        // Listen for input on the message textarea
+        if (messageInput) {
+            messageInput.addEventListener('input', updateCharCounter);
+        }
+
         [nameInput, emailInput, messageInput].forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.parentElement.classList.contains('error')) {
-                    if (input.id === 'email') {
-                        if (input.value.trim() !== '' && isValidEmail(input.value)) setSuccess(input);
-                    } else if (input.value.trim() !== '') setSuccess(input);
-                }
-            });
+            if (input) {
+                input.addEventListener('input', () => {
+                    if (input.parentElement.classList.contains('error')) {
+                        if (input.id === 'email') {
+                            if (input.value.trim() !== '' && isValidEmail(input.value)) setSuccess(input);
+                        } else if (input.value.trim() !== '') setSuccess(input);
+                    }
+                });
+            }
         });
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -336,11 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    updateCharCounter();
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
-                        input.parentElement.classList.remove('success');
-                        input.setAttribute('aria-invalid', 'false');
+                        if (input) {
+                            input.parentElement.classList.remove('success');
+                            input.setAttribute('aria-invalid', 'false');
+                        }
                     });
                 }, 1500);
             }
