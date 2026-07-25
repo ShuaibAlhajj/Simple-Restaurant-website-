@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-05-25 - [Accessible Icon-Only Social Links]
+**Learning:** Social media icon-only links require both `aria-label` for screen reader accessibility and matching `title` attributes to act as visual tooltips for sighted desktop keyboard/mouse users. Decorative nested font icons must be hidden using `aria-hidden="true"`.
+**Action:** Ensure all icon-only anchor elements combine `aria-label`, `title`, and child icon `aria-hidden="true"`.

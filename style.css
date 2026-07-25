@@ -492,11 +492,25 @@ h1, h2, h3, h4 {
     border-color: var(--primary-color);
 }
 
+.char-counter-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.char-counter {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
 .error-msg {
     color: var(--error-color);
     font-size: 0.8rem;
     display: none;
-    margin-top: 5px;
+    margin-top: 0;
 }
 
 .form-group.error input,
