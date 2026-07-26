@@ -305,12 +305,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       8. Contact Form Validation
+       8. Contact Form Validation & Character Counter
        ========================================= */
     const form = document.getElementById('reservationForm');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+
+    function updateCharCounter() {
+        if (messageInput && messageCounter) {
+            const currentLength = messageInput.value.length;
+            const maxLength = messageInput.getAttribute('maxlength') || 500;
+            messageCounter.textContent = `${currentLength} / ${maxLength}`;
+        }
+    }
+
+    if (messageInput) {
+        // Initialize on DOMContentLoaded in case of browser autofill/preserved state
+        updateCharCounter();
+        messageInput.addEventListener('input', updateCharCounter);
+    }
 
     if (form) {
         [nameInput, emailInput, messageInput].forEach(input => {
@@ -336,10 +351,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    updateCharCounter();
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
-                        input.parentElement.classList.remove('success');
+                        if (input.parentElement) {
+                            input.parentElement.classList.remove('success');
+                        }
                         input.setAttribute('aria-invalid', 'false');
                     });
                 }, 1500);
