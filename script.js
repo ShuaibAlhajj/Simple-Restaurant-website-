@@ -311,6 +311,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+
+    function updateCharCounter() {
+        if (messageInput && messageCounter) {
+            const currentLength = messageInput.value.length;
+            const maxLength = messageInput.getAttribute('maxlength') || 500;
+            messageCounter.textContent = `${currentLength} / ${maxLength}`;
+        }
+    }
+
+    if (messageInput) {
+        // Initialize the character counter to handle page restores/cached forms
+        updateCharCounter();
+        messageInput.addEventListener('input', updateCharCounter);
+    }
 
     if (form) {
         [nameInput, emailInput, messageInput].forEach(input => {
@@ -336,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    updateCharCounter(); // Reset visual character counter dynamically
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
