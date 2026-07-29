@@ -305,16 +305,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       8. Contact Form Validation
+       8. Contact Form Validation & Character Counter
        ========================================= */
     const form = document.getElementById('reservationForm');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+
+    function updateCharCounter() {
+        if (messageInput && messageCounter) {
+            const limit = messageInput.getAttribute('maxlength') || 500;
+            const currentLen = messageInput.value.length;
+            messageCounter.textContent = `${currentLen} / ${limit}`;
+        }
+    }
+
+    // Initialize character counter on page load (handles browser-cached forms)
+    updateCharCounter();
 
     if (form) {
         [nameInput, emailInput, messageInput].forEach(input => {
             input.addEventListener('input', () => {
+                if (input.id === 'message') {
+                    updateCharCounter();
+                }
                 if (input.parentElement.classList.contains('error')) {
                     if (input.id === 'email') {
                         if (input.value.trim() !== '' && isValidEmail(input.value)) setSuccess(input);
@@ -336,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    updateCharCounter(); // reset visual counter after form reset
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
