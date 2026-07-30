@@ -114,6 +114,14 @@ img {
     color: var(--heading-color);
 }
 
+.btn:disabled {
+    background-color: #555 !important;
+    border-color: #555 !important;
+    color: #aaa !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
 /* Typography */
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
