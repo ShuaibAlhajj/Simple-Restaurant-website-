@@ -260,10 +260,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Escape key to close modal
+    // Escape key to close modal & Focus Trapping
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            hideModal();
+        if (modal.style.display === 'block') {
+            if (e.key === 'Escape') {
+                hideModal();
+            } else if (e.key === 'Tab') {
+                const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+                const focusableElements = modal.querySelectorAll(focusableSelectors);
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
         }
     });
 

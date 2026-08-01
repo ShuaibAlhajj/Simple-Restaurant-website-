@@ -9,3 +9,7 @@
 ## 2024-05-24 - [Scrollspy and Dynamic ARIA Labels]
 **Learning:** For single-page navigation, visual feedback of the current section (Scrollspy) significantly aids orientation. Using `IntersectionObserver` with `rootMargin: "0px 0px -50% 0px"` ensures the active state changes as the section crosses the middle of the viewport. For dynamic elements like a cart button, updating the `aria-label` with live counts (e.g., "View Order Cart - 1 item") is more accessible than just visual counters.
 **Action:** Implement `IntersectionObserver` for auto-updating navigation states and ensure interactive counters have descriptive `aria-label` updates.
+
+## 2024-08-01 - [Modal Keyboard Focus Trapping]
+**Learning:** Managing focus is crucial for accessible dialogs in static single-page websites. Simply restoring focus when a modal closes is not enough; keyboard tab navigation must be explicitly trapped using standard JavaScript selectors to prevent users from accidentally navigating outside the dialog to content obscured by the backdrop.
+**Action:** Always implement modal focus trapping using querySelectorAll with keyboard event listeners to capture Tab and Shift+Tab key events.
