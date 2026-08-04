@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (data) {
                 modalImg.src = data.img;
+                modalImg.alt = data.title;
                 modalTitle.innerText = data.title;
                 modalPrice.innerText = data.price;
                 modalDesc.innerText = data.desc;
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
@@ -260,7 +262,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Escape key to close modal
+    // Focus trapping and keyboard navigation within modal
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+    });
+
+    // Escape key to close modal (window-level)
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.style.display === 'block') {
             hideModal();
