@@ -305,15 +305,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       8. Contact Form Validation
+       8. Contact Form Validation & Character Counter
        ========================================= */
     const form = document.getElementById('reservationForm');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+
+    function updateCharCounter() {
+        if (messageInput && messageCounter) {
+            const currentLength = messageInput.value.length;
+            const maxLength = messageInput.getAttribute('maxlength') || 500;
+            messageCounter.textContent = `${currentLength} / ${maxLength}`;
+        }
+    }
+
+    // Initialize character counter
+    updateCharCounter();
 
     if (form) {
+        if (messageInput) {
+            messageInput.addEventListener('input', updateCharCounter);
+        }
+
         [nameInput, emailInput, messageInput].forEach(input => {
+            if (!input) return;
             input.addEventListener('input', () => {
                 if (input.parentElement.classList.contains('error')) {
                     if (input.id === 'email') {
@@ -336,9 +353,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
+                    updateCharCounter();
                     btn.innerText = originalText;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
+                        if (!input) return;
                         input.parentElement.classList.remove('success');
                         input.setAttribute('aria-invalid', 'false');
                     });
