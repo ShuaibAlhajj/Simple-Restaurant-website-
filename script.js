@@ -260,10 +260,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Escape key to close modal
+    // Escape key and Tab focus trapping for modal
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            hideModal();
+        if (modal.style.display === 'block') {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+
+            if (e.key === 'Tab') {
+                const focusableElements = [closeModal, modalAddBtn];
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
         }
     });
 
