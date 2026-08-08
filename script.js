@@ -260,6 +260,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Focus Trapping
+    const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    modal.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+
+        const focusableElements = modal.querySelectorAll(focusableSelectors);
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+        }
+    });
+
     // Escape key to close modal
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.style.display === 'block') {
