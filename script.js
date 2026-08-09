@@ -299,16 +299,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addToCart(title, price) {
         cartCount++;
-        cartCountEl.innerText = cartCount;
+        if (cartCountEl) {
+            cartCountEl.innerText = cartCount;
+        }
         
         // Update ARIA label for better accessibility
-        cartBtn.setAttribute('aria-label', `View Order Cart - ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`);
-
-        // Simple visual feedback
-        cartBtn.classList.add('bump');
-        setTimeout(() => {
-            cartBtn.classList.remove('bump');
-        }, 300);
+        if (cartBtn) {
+            cartBtn.setAttribute('aria-label', `View Order Cart - ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`);
+            // Simple visual feedback
+            cartBtn.classList.add('bump');
+            setTimeout(() => {
+                cartBtn.classList.remove('bump');
+            }, 300);
+        }
 
         showToast(`Added to Order: ${title} - $${price}`);
     }
