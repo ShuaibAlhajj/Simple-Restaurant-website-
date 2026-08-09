@@ -13,3 +13,7 @@
 ## 2024-08-07 - [Form Reset Synchronization for Character Counters]
 **Learning:** Real-time character counters linked to inputs must be manually synchronized with the form's reset state. Relying only on browser-level reset actions restores textareas to empty, but fails to trigger JavaScript 'input' events, leaving visual counters out of sync (e.g. still showing '51 / 500' on an empty field).
 **Action:** Explicitly call the counter update function inside the form's success/reset handler, and wrap validation messages and counters in a dedicated flex wrapper to keep layouts responsive and perfectly aligned.
+
+## 2024-08-08 - [Modal Focus Trapping and Keyboard Accessibility]
+**Learning:** In static modal dialogs, standard keyboard tab-key navigation escapes to elements outside the active modal container unless focus is explicitly trapped. Standardizing trapping using semantic query selectors and wrapping index pointers enhances screen reader and keyboard UX without layout compromises.
+**Action:** Always implement a dedicated keydown event listener inside the modal to trap focus, using standard query selectors for focusable elements and checking for shiftKey modification.
