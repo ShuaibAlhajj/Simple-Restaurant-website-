@@ -17,3 +17,7 @@
 ## 2024-08-08 - [Modal Focus Trapping and Keyboard Accessibility]
 **Learning:** In static modal dialogs, standard keyboard tab-key navigation escapes to elements outside the active modal container unless focus is explicitly trapped. Standardizing trapping using semantic query selectors and wrapping index pointers enhances screen reader and keyboard UX without layout compromises.
 **Action:** Always implement a dedicated keydown event listener inside the modal to trap focus, using standard query selectors for focusable elements and checking for shiftKey modification.
+
+## 2024-08-10 - [Initial ARIA Zero-State and Redundant Icon Hiding]
+**Learning:** Elements tracking dynamic state, like floating cart buttons with a badge, must explicitly declare their initial state in the `aria-label` (e.g. `View Order Cart - 0 items`) rather than leaving it empty or generic. To prevent screen readers from reading raw character codes like `&times;` or double-announcing visual counts and font icons, decorative elements and sub-counters should be explicitly hidden using `aria-hidden="true"`.
+**Action:** Always provide descriptive and title attributes on icon-only links, hide visual elements when they are fully described by their parent's ARIA label, and wrap character entities in hidden elements.
