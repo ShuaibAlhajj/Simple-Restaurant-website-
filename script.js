@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (data) {
                 modalImg.src = data.img;
+                modalImg.alt = data.title;
                 modalTitle.innerText = data.title;
                 modalPrice.innerText = data.price;
                 modalDesc.innerText = data.desc;
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
@@ -251,6 +253,27 @@ document.addEventListener('DOMContentLoaded', () => {
             lastFocusedElement.focus();
         }
     }
+
+    // Modal Focus Trapping
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    last.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    first.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+    });
 
     closeModal.addEventListener('click', hideModal);
 
