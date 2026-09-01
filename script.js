@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (data) {
                 modalImg.src = data.img;
+                modalImg.alt = data.title;
                 modalTitle.innerText = data.title;
                 modalPrice.innerText = data.price;
                 modalDesc.innerText = data.desc;
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAddBtn.setAttribute('data-id', id);
                 modalAddBtn.setAttribute('data-title', data.title);
                 modalAddBtn.setAttribute('data-price', data.price.replace('$', ''));
+                modalAddBtn.setAttribute('aria-label', `Add ${data.title} to Order`);
 
                 modal.style.display = 'block';
                 closeModal.focus();
@@ -311,6 +313,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
 
         showToast(`Added to Order: ${title} - $${price}`);
+    }
+
+    if (cartBtn) {
+        cartBtn.addEventListener('click', () => {
+            if (cartCount === 0) {
+                showToast('Your order cart is currently empty.');
+            } else {
+                showToast(`Your order cart contains ${cartCount} ${cartCount === 1 ? 'item' : 'items'}.`);
+            }
+        });
     }
 
     // Add to Cart Buttons (Card & Modal)
