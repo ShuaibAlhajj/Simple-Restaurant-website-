@@ -315,6 +315,16 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`Added to Order: ${title} - $${price}`);
     }
 
+    if (cartBtn) {
+        cartBtn.addEventListener('click', () => {
+            if (cartCount === 0) {
+                showToast('Your order cart is currently empty.');
+            } else {
+                showToast(`Your order cart contains ${cartCount} ${cartCount === 1 ? 'item' : 'items'}.`);
+            }
+        });
+    }
+
     // Add to Cart Buttons (Card & Modal)
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-add') || e.target.id === 'modalAddBtn') {
