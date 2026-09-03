@@ -570,6 +570,11 @@ h1, h2, h3, h4 {
     background-color: #e0a800;
 }
 
+.btn-add.added {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
 /* Modal Styles */
 .modal {
     display: none;
