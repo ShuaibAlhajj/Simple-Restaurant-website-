@@ -327,13 +327,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add to Cart Buttons (Card & Modal)
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-add') || e.target.id === 'modalAddBtn') {
-            const title = e.target.getAttribute('data-title');
-            const price = e.target.getAttribute('data-price');
+        const btn = e.target.closest('.btn-add, #modalAddBtn');
+        if (btn) {
+            const title = btn.getAttribute('data-title');
+            const price = btn.getAttribute('data-price');
             addToCart(title, price);
             
+            // Temporary inline visual and ARIA feedback for card buttons
+            if (btn.classList.contains('btn-add') && !btn.classList.contains('added')) {
+                const originalText = btn.textContent;
+                const originalAriaLabel = btn.getAttribute('aria-label');
+
+                btn.classList.add('added');
+                btn.textContent = 'Added ✓';
+                btn.setAttribute('aria-label', `${title} added to order`);
+
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.textContent = originalText;
+                    if (originalAriaLabel) {
+                        btn.setAttribute('aria-label', originalAriaLabel);
+                    } else {
+                        btn.removeAttribute('aria-label');
+                    }
+                }, 1200);
+            }
+
             // If added from modal, close modal
-            if (e.target.id === 'modalAddBtn') {
+            if (btn.id === 'modalAddBtn') {
                 hideModal();
             }
         }
