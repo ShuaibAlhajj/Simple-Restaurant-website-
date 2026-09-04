@@ -402,14 +402,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (messageInput.value.trim() === '') { setError(messageInput); isValid = false; } else setSuccess(messageInput);
             if (isValid) {
                 const btn = form.querySelector('button');
-                const originalText = btn.innerText;
-                btn.innerText = 'Sending...';
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true" style="margin-right: 8px;"></i> Sending...';
                 btn.disabled = true;
                 setTimeout(() => {
                     showToast('Thank you! Your message has been sent successfully.');
                     form.reset();
                     updateMessageCounter(); // Sync counter after reset
-                    btn.innerText = originalText;
+                    btn.innerHTML = originalContent;
                     btn.disabled = false;
                     [nameInput, emailInput, messageInput].forEach(input => {
                         input.parentElement.classList.remove('success');
