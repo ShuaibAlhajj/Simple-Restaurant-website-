@@ -397,26 +397,55 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             let isValid = true;
-            if (nameInput.value.trim() === '') { setError(nameInput); isValid = false; } else setSuccess(nameInput);
-            if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) { setError(emailInput); isValid = false; } else setSuccess(emailInput);
-            if (messageInput.value.trim() === '') { setError(messageInput); isValid = false; } else setSuccess(messageInput);
-            if (isValid) {
-                const btn = form.querySelector('button');
-                const originalContent = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true" style="margin-right: 8px;"></i> Sending...';
-                btn.disabled = true;
-                setTimeout(() => {
-                    showToast('Thank you! Your message has been sent successfully.');
-                    form.reset();
-                    updateMessageCounter(); // Sync counter after reset
-                    btn.innerHTML = originalContent;
-                    btn.disabled = false;
-                    [nameInput, emailInput, messageInput].forEach(input => {
-                        input.parentElement.classList.remove('success');
-                        input.setAttribute('aria-invalid', 'false');
-                    });
-                }, 1500);
+            let firstInvalidInput = null;
+
+            if (nameInput.value.trim() === '') {
+                setError(nameInput);
+                isValid = false;
+                if (!firstInvalidInput) firstInvalidInput = nameInput;
+            } else {
+                setSuccess(nameInput);
             }
+
+            if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
+                setError(emailInput);
+                isValid = false;
+                if (!firstInvalidInput) firstInvalidInput = emailInput;
+            } else {
+                setSuccess(emailInput);
+            }
+
+            if (messageInput.value.trim() === '') {
+                setError(messageInput);
+                isValid = false;
+                if (!firstInvalidInput) firstInvalidInput = messageInput;
+            } else {
+                setSuccess(messageInput);
+            }
+
+            if (!isValid) {
+                showToast('Please fill out all required fields correctly.');
+                if (firstInvalidInput) {
+                    firstInvalidInput.focus();
+                }
+                return;
+            }
+
+            const btn = form.querySelector('button');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true" style="margin-right: 8px;"></i> Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                showToast('Thank you! Your message has been sent successfully.');
+                form.reset();
+                updateMessageCounter(); // Sync counter after reset
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                [nameInput, emailInput, messageInput].forEach(input => {
+                    input.parentElement.classList.remove('success');
+                    input.setAttribute('aria-invalid', 'false');
+                });
+            }, 1500);
         });
     }
 
