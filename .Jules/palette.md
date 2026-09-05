@@ -17,3 +17,7 @@
 ## 2024-08-08 - [Modal Focus Trapping and Keyboard Accessibility]
 **Learning:** In static modal dialogs, standard keyboard tab-key navigation escapes to elements outside the active modal container unless focus is explicitly trapped. Standardizing trapping using semantic query selectors and wrapping index pointers enhances screen reader and keyboard UX without layout compromises.
 **Action:** Always implement a dedicated keydown event listener inside the modal to trap focus, using standard query selectors for focusable elements and checking for shiftKey modification.
+
+## 2026-09-05 - [Form Validation Focus and Feedback]
+**Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
+**Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
