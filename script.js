@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    function closeMobileMenu(shouldFocus = false) {
+        if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-expanded', 'false');
+            if (shouldFocus) {
+                mobileMenu.focus();
+            }
+        }
+    }
+
     // Toggle menu
     mobileMenu.addEventListener('click', () => {
         const isActive = mobileMenu.classList.toggle('active');
@@ -17,10 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu when clicking a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-            mobileMenu.setAttribute('aria-expanded', 'false');
+            closeMobileMenu();
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !navMenu.contains(e.target)) {
+            closeMobileMenu();
+        }
     });
 
     /* =========================================
@@ -285,10 +301,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Escape key to close modal
+    // Escape key to close modal or mobile menu
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            hideModal();
+        if (e.key === 'Escape') {
+            if (modal.style.display === 'block') {
+                hideModal();
+            } else if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu(true);
+            }
         }
     });
 
