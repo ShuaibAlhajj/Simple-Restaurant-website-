@@ -465,6 +465,21 @@ h1, h2, h3, h4 {
     margin-bottom: 10px;
 }
 
+.info-item h4 {
+    color: var(--white);
+}
+
+.info-item a {
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.info-item a:hover,
+.info-item a:focus-visible {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
 .contact-form form {
     background-color: #3d4446;
     padding: 30px;
