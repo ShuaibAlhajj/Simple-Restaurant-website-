@@ -722,6 +722,41 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+/* Back to Top Floating Button */
+.back-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    border: none;
+    padding: 0;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
 /* Cart Floating Button */
 .cart-btn {
     position: fixed;
