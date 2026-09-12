@@ -70,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       2. Sticky Navbar on Scroll
+       2. Sticky Navbar & Back to Top on Scroll
        ========================================= */
     const navbar = document.querySelector('.navbar');
+    const backToTopBtn = document.getElementById('backToTop');
+    const mainContent = document.getElementById('main-content');
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -84,7 +86,27 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.style.boxShadow = 'none';
             navbar.style.padding = '20px 0';
         }
+
+        if (backToTopBtn) {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
     });
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            if (mainContent) {
+                mainContent.focus();
+            }
+        });
+    }
 
     /* =========================================
        3. Scroll Reveal Animations (Intersection Observer)
