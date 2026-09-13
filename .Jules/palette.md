@@ -21,3 +21,7 @@
 ## 2026-09-05 - [Form Validation Focus and Feedback]
 **Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
 **Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
+
+## 2026-09-06 - [Live Regions for Dynamic Grid Filtering]
+**Learning:** Updating `aria-pressed` on filter controls informs screen reader users that a filter was activated, but leaves them unaware of the resulting change in content or item counts. Pairing filter buttons with a polite `sr-only` live region providing dynamic count feedback (e.g. "Showing 2 items in Starters") gives immediate awareness without disrupting focus.
+**Action:** Always include a visually hidden `aria-live="polite"` status region when filtering dynamic item grids.
