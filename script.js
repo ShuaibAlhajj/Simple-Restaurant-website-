@@ -149,16 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.setAttribute('aria-pressed', 'true');
 
             const filterValue = btn.getAttribute('data-filter');
+            let visibleCount = 0;
 
             menuCards.forEach(card => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                     card.classList.remove('hide');
                     card.classList.add('show');
+                    visibleCount++;
                 } else {
                     card.classList.add('hide');
                     card.classList.remove('show');
                 }
             });
+
+            const filterStatus = document.getElementById('menu-filter-status');
+            if (filterStatus) {
+                const categoryName = btn.textContent.trim();
+                filterStatus.textContent = `Showing ${visibleCount} ${categoryName.toLowerCase() === 'all' ? 'menu' : categoryName} ${visibleCount === 1 ? 'item' : 'items'}.`;
+            }
         });
     });
 
