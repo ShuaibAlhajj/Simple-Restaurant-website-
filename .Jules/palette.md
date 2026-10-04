@@ -21,3 +21,7 @@
 ## 2026-09-05 - [Form Validation Focus and Feedback]
 **Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
 **Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
+
+## 2026-10-04 - [Screen Reader Announcements for Content Filtering]
+**Learning:** When content grids (like menu items or product catalogs) update dynamically based on category filters, visual users immediately see the layout change, but screen reader users receive no audio confirmation of how many items remain or what filter was applied. Paired with `aria-pressed="true"`, an visually hidden (`.sr-only`) ARIA live region (`aria-live="polite"`) updated dynamically with result counts (e.g. "Showing 2 Starters items.") seamlessly bridges this accessibility gap.
+**Action:** Always include a dedicated `.sr-only` live status container when implementing dynamic client-side filtering or search results.
