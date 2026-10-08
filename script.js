@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================= */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const menuCards = document.querySelectorAll('.menu-card');
+    const filterStatus = document.getElementById('menu-filter-status');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -149,16 +150,28 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.setAttribute('aria-pressed', 'true');
 
             const filterValue = btn.getAttribute('data-filter');
+            let visibleCount = 0;
 
             menuCards.forEach(card => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                     card.classList.remove('hide');
                     card.classList.add('show');
+                    visibleCount++;
                 } else {
                     card.classList.add('hide');
                     card.classList.remove('show');
                 }
             });
+
+            if (filterStatus) {
+                const categoryLabel = btn.textContent.trim();
+                const itemWord = visibleCount === 1 ? 'item' : 'items';
+                if (filterValue === 'all') {
+                    filterStatus.textContent = `Showing all ${visibleCount} menu items.`;
+                } else {
+                    filterStatus.textContent = `Showing ${visibleCount} ${categoryLabel} ${itemWord}.`;
+                }
+            }
         });
     });
 
