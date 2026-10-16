@@ -150,15 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filterValue = btn.getAttribute('data-filter');
 
+            let visibleCount = 0;
             menuCards.forEach(card => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                     card.classList.remove('hide');
                     card.classList.add('show');
+                    visibleCount++;
                 } else {
                     card.classList.add('hide');
                     card.classList.remove('show');
                 }
             });
+
+            const statusEl = document.getElementById('menu-filter-status');
+            if (statusEl) {
+                const categoryName = btn.textContent.trim();
+                statusEl.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'item' : 'items'} for ${categoryName}.`;
+            }
         });
     });
 
