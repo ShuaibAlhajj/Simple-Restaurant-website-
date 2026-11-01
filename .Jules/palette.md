@@ -21,3 +21,7 @@
 ## 2026-09-05 - [Form Validation Focus and Feedback]
 **Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
 **Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
+
+## 2026-10-18 - [Live Region Status for Filtered Catalogs]
+**Learning:** While `aria-pressed="true"` communicates toggle state changes on filter buttons, screen reader users cannot perceive that items in the catalog below have changed or how many matching results remain visible without navigating away. A visually hidden live region (`aria-live="polite" aria-atomic="true"`) that announces the result count and category provides seamless feedback without disrupting keyboard focus.
+**Action:** Pair filter controls with an `aria-live="polite"` status element to announce matching item counts and active filter categories upon user selection.
