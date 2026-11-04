@@ -21,3 +21,7 @@
 ## 2026-09-05 - [Form Validation Focus and Feedback]
 **Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
 **Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
+
+## 2026-11-04 - [Live Region Status for Filtered Results]
+**Learning:** When users filter dynamic content (such as restaurant menu items), visual changes are immediately perceptible to sighted users, but screen reader users are unaware of the updated result set unless a live region announces the change. A polite, atomic live status container (`aria-live="polite"` and `aria-atomic="true"`) using `.sr-only` clearly communicates matching result counts without shifting focus or disrupting layout.
+**Action:** Provide an accessible `.sr-only` live region when adding client-side category filters or search features to announce matching item counts.
