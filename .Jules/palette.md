@@ -21,3 +21,7 @@
 ## 2026-09-05 - [Form Validation Focus and Feedback]
 **Learning:** When client-side form validation fails upon submission, users (especially screen reader and keyboard-only users) can be left unaware of missing or invalid fields if focus remains on the submit button. Tracking the first invalid field, setting focus directly to it, and providing a polite toast message guides users seamlessly to correct errors.
 **Action:** Always track the first invalid input during form submit validation to set focus to it and display non-blocking feedback.
+
+## 2026-09-12 - [Dynamic Filter Screen Reader Announcements]
+**Learning:** In interactive filterable grids where items dynamically toggle CSS classes (show/hide), updating `aria-pressed` on filter buttons communicates button state but leaves screen reader users blind to the outcome of their action (e.g. how many matching items exist or whether any items matched). A visually hidden live region (`role="status"`, `aria-live="polite"`, `aria-atomic="true"`) announcing the filtered category and item count bridges this gap without cluttering visual design.
+**Action:** Always pair interactive filter buttons with a polite live status region that announces the resulting item count upon filter changes.
